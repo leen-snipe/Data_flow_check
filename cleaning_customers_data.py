@@ -1,12 +1,9 @@
 import pandas as pd # type: ignore
 
-# Read dataset (make sure to change the path to your local file)
 df = pd.read_excel('C:\\Users\\SnipeGuest\\Data_flow_check\\dataset.xlsx')
 
-# Print the entire DataFrame (optional)
 print(df)
 
-# Display the first 10 rows of the dataframe
 df.head(10)
 
 # List of picked columns to process
@@ -23,10 +20,8 @@ picked_columns = [
 # Select the relevant columns
 df_selected_columns = df[picked_columns]
 
-# Print the selected columns (optional)
 print(df_selected_columns)
 
-# Display the first 5 rows of the selected columns
 df_selected_columns.head(5)
 
 # Threshold to filter out zero values for all columns except 'Main Qunatity Flowrate'
@@ -50,7 +45,6 @@ for column in df_selected_columns.columns:
         median_value = non_zero_values.median()
         mean_value = non_zero_values.mean()
 
-        # Print the results
         print(f"Column: {column}")
         print(f"Mode: {mode_value}")
         print(f"Median: {median_value}")
