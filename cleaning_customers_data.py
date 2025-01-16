@@ -2,8 +2,8 @@ import pandas as pd
 import os
 import requests
 
-folder_path = "C:\\Users\\SnipeGuest\\jobs3"
-output_csv_path = 'C:\\Users\\SnipeGuest\\Data_flow_check\\aggregated_results4.csv'
+folder_path = "C:\\Users\\SnipeGuest\\ahmad_jobs"
+output_csv_path = 'C:\\Users\\SnipeGuest\\Data_flow_check\\ahmad_results.csv'
 api_url = 'https://agrilive.snipe.ps/api/sendreport/'
 api_token = 'da4699890b923a33529409ae3cd2bc65092247b6'
 
@@ -113,6 +113,10 @@ for file_name in os.listdir(folder_path):
 # Convert results to DataFrame and save to CSV
 results_df = pd.DataFrame(results)
 print(results_df)
+
+for column in results_df.select_dtypes(include=['object']).columns:
+    results_df[column] = results_df[column].apply(lambda x: str(x)[:100] if isinstance(x, str) else x)
+
 results_df.to_csv(output_csv_path, index=False, encoding='utf-8-sig')
 
 # Send the CSV file to the API endpoint
